@@ -1,0 +1,995 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     31514,        985]
+NotebookOptionsPosition[     30066,        937]
+NotebookOutlinePosition[     30409,        952]
+CellTagsIndexPosition[     30366,        949]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["Problem 1:", "Section"],
+ Cell[BoxData[
+  StyleBox[
+   RowBox[{" ", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["y", "\[Prime]\[Prime]"], "+", 
+      RowBox[{"x", " ", 
+       SuperscriptBox["y", "\[Prime]"]}], "+", "y"}], "\[Equal]", 
+     RowBox[{"2", "+", 
+      RowBox[{"3", " ", 
+       SuperscriptBox["x", "2"]}]}]}]}], "Section"]]]
+}], "Text",
+ CellChangeTimes->{{3.974957265898909*^9, 3.9749572934086647`*^9}, {
+  3.974957341463711*^9, 3.9749573807726517`*^9}, {3.974957430793394*^9, 
+  3.974957508273876*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Clear", " ", "previous", " ", "variables"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Clear", "[", 
+    RowBox[{
+    "x", ",", "y", ",", "y1", ",", "y2", ",", "v1", ",", "v2", ",", "w", ",", 
+     "f", ",", "yh", ",", "yc", ",", "yp", ",", "sol"}], "]"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Define", " ", "the", " ", "equations"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"eq1", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+       RowBox[{"x", "*", 
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "x", "]"}]}], "+", 
+       RowBox[{"y", "[", "x", "]"}]}], "\[Equal]", 
+      RowBox[{
+       RowBox[{"3", "*", 
+        RowBox[{"x", "^", "2"}]}], "+", "2"}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", "Nonhomogeneous", "*)"}], 
+   RowBox[{
+    RowBox[{"eq0", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+       RowBox[{"x", "*", 
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "x", "]"}]}], "+", 
+       RowBox[{"y", "[", "x", "]"}]}], "\[Equal]", "0"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", "Homogeneous", "*)"}], 
+   RowBox[{
+    RowBox[{
+     RowBox[{"f", "[", "x_", "]"}], "=", 
+     RowBox[{
+      RowBox[{"3", "*", 
+       RowBox[{"x", "^", "2"}]}], "+", "2"}]}], ";", 
+    RowBox[{"(*", 
+     RowBox[{"RHS", " ", "function"}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Nonhomogeneous eq: \>\"", ",", "eq1"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Homogeneous eq: \>\"", ",", "eq0"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<RHS function f(x): \>\"", ",", 
+      RowBox[{"f", "[", "x", "]"}]}], "]"}], ";"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Solve", " ", "homogeneous", " ", "equation"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"yh", "=", 
+     RowBox[{
+      RowBox[{"DSolve", "[", 
+       RowBox[{"eq0", ",", 
+        RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Homogeneous solution yh: \>\"", ",", "yh"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Define", " ", "two", " ", "independent", " ", "solutions"}], 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y1", "[", "x_", "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"y", "[", "x", "]"}], "/.", "yh"}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"C", "[", "1", "]"}], "\[Rule]", "1"}], ",", 
+        RowBox[{
+         RowBox[{"C", "[", "2", "]"}], "\[Rule]", "0"}]}], "}"}]}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y2", "[", "x_", "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"y", "[", "x", "]"}], "/.", "yh"}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"C", "[", "1", "]"}], "\[Rule]", "0"}], ",", 
+        RowBox[{
+         RowBox[{"C", "[", "2", "]"}], "\[Rule]", "1"}]}], "}"}]}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Independent solution y1(x): \>\"", ",", 
+      RowBox[{"y1", "[", "x", "]"}]}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Independent solution y2(x): \>\"", ",", 
+      RowBox[{"y2", "[", "x", "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", "Wronskian", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"w", "=", 
+     RowBox[{"Det", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"y1", "[", "x", "]"}], ",", 
+          RowBox[{"y2", "[", "x", "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"y1", "'"}], "[", "x", "]"}], ",", 
+          RowBox[{
+           RowBox[{"y2", "'"}], "[", "x", "]"}]}], "}"}]}], "}"}], "]"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Wronskian w(x): \>\"", ",", "w"}], "]"}], ";"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Variation", " ", "of", " ", 
+     RowBox[{"parameters", ":", 
+      RowBox[{"compute", " ", "v1", " ", "and", " ", "v2"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"v1", "=", 
+     RowBox[{"-", 
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y2", "[", "x", "]"}], "*", 
+         RowBox[{
+          RowBox[{"f", "[", "x", "]"}], "/", "w"}]}], ",", "x"}], "]"}]}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"v2", "=", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"y1", "[", "x", "]"}], "*", 
+        RowBox[{
+         RowBox[{"f", "[", "x", "]"}], "/", "w"}]}], ",", "x"}], "]"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<v1(x) = \>\"", ",", "v1"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<v2(x) = \>\"", ",", "v2"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Particular", " ", "solution"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"yp", "=", 
+     RowBox[{
+      RowBox[{"v1", "*", 
+       RowBox[{"y1", "[", "x", "]"}]}], "+", 
+      RowBox[{"v2", "*", 
+       RowBox[{"y2", "[", "x", "]"}]}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Particular solution yp(x): \>\"", ",", "yp"}], "]"}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Complementary", " ", 
+     RowBox[{"(", "homogeneous", ")"}], " ", "solution"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"yc", "=", 
+     RowBox[{
+      RowBox[{"y", "[", "x", "]"}], "/.", "yh"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Complementary solution yc(x): \>\"", ",", "yc"}], "]"}], 
+    ";"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{"General", " ", "solution"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"sol", "[", "x_", "]"}], "=", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"yc", "+", "yp"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<General solution sol(x): \>\"", ",", 
+      RowBox[{"sol", "[", "x", "]"}]}], "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{3.9749571722674055`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Nonhomogeneous eq: \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y", "[", "x", "]"}], "+", 
+     RowBox[{"x", " ", 
+      RowBox[{
+       SuperscriptBox["y", "\[Prime]",
+        MultilineFunction->None], "[", "x", "]"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["y", "\[Prime]\[Prime]",
+       MultilineFunction->None], "[", "x", "]"}]}], "\[Equal]", 
+    RowBox[{"2", "+", 
+     RowBox[{"3", " ", 
+      SuperscriptBox["x", "2"]}]}]}]}],
+  SequenceForm[
+  "Nonhomogeneous eq: ", $CellContext`y[$CellContext`x] + $CellContext`x 
+     Derivative[1][$CellContext`y][$CellContext`x] + 
+    Derivative[2][$CellContext`y][$CellContext`x] == 2 + 3 $CellContext`x^2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957211915468*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Homogeneous eq: \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y", "[", "x", "]"}], "+", 
+     RowBox[{"x", " ", 
+      RowBox[{
+       SuperscriptBox["y", "\[Prime]",
+        MultilineFunction->None], "[", "x", "]"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["y", "\[Prime]\[Prime]",
+       MultilineFunction->None], "[", "x", "]"}]}], "\[Equal]", "0"}]}],
+  SequenceForm[
+  "Homogeneous eq: ", $CellContext`y[$CellContext`x] + $CellContext`x 
+     Derivative[1][$CellContext`y][$CellContext`x] + 
+    Derivative[2][$CellContext`y][$CellContext`x] == 0],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957211917468*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"RHS function f(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{"2", "+", 
+    RowBox[{"3", " ", 
+     SuperscriptBox["x", "2"]}]}]}],
+  SequenceForm["RHS function f(x): ", 2 + 3 $CellContext`x^2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572119204693`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Homogeneous solution yh: \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"y", "[", "x", "]"}], "\[Rule]", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          SuperscriptBox["x", "2"], "2"]}]], " ", 
+       RowBox[{"C", "[", "2", "]"}]}], "+", 
+      RowBox[{
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          SuperscriptBox["x", "2"], "2"]}]], " ", 
+       SqrtBox[
+        FractionBox["\[Pi]", "2"]], " ", 
+       RowBox[{"C", "[", "1", "]"}], " ", 
+       RowBox[{"Erfi", "[", 
+        FractionBox["x", 
+         SqrtBox["2"]], "]"}]}]}]}], "}"}]}],
+  SequenceForm[
+  "Homogeneous solution yh: ", {$CellContext`y[$CellContext`x] -> 
+    E^(Rational[-1, 2] $CellContext`x^2) C[2] + 
+     E^(Rational[-1, 2] $CellContext`x^2) (Rational[1, 2] Pi)^Rational[1, 2] 
+      C[1] Erfi[2^Rational[-1, 2] $CellContext`x]}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957212209571*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Independent solution y1(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", 
+      FractionBox[
+       SuperscriptBox["x", "2"], "2"]}]], " ", 
+    SqrtBox[
+     FractionBox["\[Pi]", "2"]], " ", 
+    RowBox[{"Erfi", "[", 
+     FractionBox["x", 
+      SqrtBox["2"]], "]"}]}]}],
+  SequenceForm[
+  "Independent solution y1(x): ", 
+   E^(Rational[-1, 2] $CellContext`x^2) (Rational[1, 2] Pi)^Rational[1, 2] 
+   Erfi[2^Rational[-1, 2] $CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957212212573*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Independent solution y2(x): \"\>", "\[InvisibleSpace]", 
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"-", 
+     FractionBox[
+      SuperscriptBox["x", "2"], "2"]}]]}],
+  SequenceForm[
+  "Independent solution y2(x): ", E^(Rational[-1, 2] $CellContext`x^2)],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572122155743`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Wronskian w(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{"-", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", 
+      FractionBox[
+       SuperscriptBox["x", "2"], "2"]}]]}]}],
+  SequenceForm["Wronskian w(x): ", -E^(Rational[-1, 2] $CellContext`x^2)],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572122185745`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"v1(x) = \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"2", " ", "x"}], "+", 
+    SuperscriptBox["x", "3"]}]}],
+  SequenceForm["v1(x) = ", 2 $CellContext`x + $CellContext`x^3],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572123146095`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"v2(x) = \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"-", 
+     SqrtBox[
+      FractionBox["\[Pi]", "2"]]}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        SuperscriptBox["\[ExponentialE]", 
+         FractionBox[
+          SuperscriptBox["x", "2"], "2"]]}], " ", 
+       SqrtBox[
+        FractionBox["2", "\[Pi]"]], " ", 
+       SuperscriptBox["x", "2"]}], "+", 
+      RowBox[{"x", " ", 
+       RowBox[{"(", 
+        RowBox[{"2", "+", 
+         SuperscriptBox["x", "2"]}], ")"}], " ", 
+       RowBox[{"Erfi", "[", 
+        FractionBox["x", 
+         SqrtBox["2"]], "]"}]}]}], ")"}]}]}],
+  SequenceForm[
+  "v2(x) = ", -(Rational[1, 2] Pi)^
+    Rational[1, 2] (-
+     E^(Rational[1, 2] $CellContext`x^2) (2/Pi)^
+      Rational[1, 2] $CellContext`x^2 + $CellContext`x (2 + $CellContext`x^2) 
+     Erfi[2^Rational[-1, 2] $CellContext`x])],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957212318611*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Particular solution yp(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"-", 
+       FractionBox[
+        SuperscriptBox["x", "2"], "2"]}]], " ", 
+     SqrtBox[
+      FractionBox["\[Pi]", "2"]], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"2", " ", "x"}], "+", 
+       SuperscriptBox["x", "3"]}], ")"}], " ", 
+     RowBox[{"Erfi", "[", 
+      FractionBox["x", 
+       SqrtBox["2"]], "]"}]}], "-", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"-", 
+       FractionBox[
+        SuperscriptBox["x", "2"], "2"]}]], " ", 
+     SqrtBox[
+      FractionBox["\[Pi]", "2"]], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         SuperscriptBox["\[ExponentialE]", 
+          FractionBox[
+           SuperscriptBox["x", "2"], "2"]]}], " ", 
+        SqrtBox[
+         FractionBox["2", "\[Pi]"]], " ", 
+        SuperscriptBox["x", "2"]}], "+", 
+       RowBox[{"x", " ", 
+        RowBox[{"(", 
+         RowBox[{"2", "+", 
+          SuperscriptBox["x", "2"]}], ")"}], " ", 
+        RowBox[{"Erfi", "[", 
+         FractionBox["x", 
+          SqrtBox["2"]], "]"}]}]}], ")"}]}]}]}],
+  SequenceForm[
+  "Particular solution yp(x): ", 
+   E^(Rational[-1, 2] $CellContext`x^2) (Rational[1, 2] Pi)^Rational[1, 2] (
+     2 $CellContext`x + $CellContext`x^3) 
+    Erfi[2^Rational[-1, 2] $CellContext`x] - 
+   E^(Rational[-1, 2] $CellContext`x^2) (Rational[1, 2] Pi)^
+    Rational[1, 2] (-
+     E^(Rational[1, 2] $CellContext`x^2) (2/Pi)^
+      Rational[1, 2] $CellContext`x^2 + $CellContext`x (2 + $CellContext`x^2) 
+     Erfi[2^Rational[-1, 2] $CellContext`x])],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957212322613*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Complementary solution yc(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"-", 
+       FractionBox[
+        SuperscriptBox["x", "2"], "2"]}]], " ", 
+     RowBox[{"C", "[", "2", "]"}]}], "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"-", 
+       FractionBox[
+        SuperscriptBox["x", "2"], "2"]}]], " ", 
+     SqrtBox[
+      FractionBox["\[Pi]", "2"]], " ", 
+     RowBox[{"C", "[", "1", "]"}], " ", 
+     RowBox[{"Erfi", "[", 
+      FractionBox["x", 
+       SqrtBox["2"]], "]"}]}]}]}],
+  SequenceForm[
+  "Complementary solution yc(x): ", E^(Rational[-1, 2] $CellContext`x^2) C[2] + 
+   E^(Rational[-1, 2] $CellContext`x^2) (Rational[1, 2] Pi)^Rational[1, 2] 
+    C[1] Erfi[2^Rational[-1, 2] $CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957212326614*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"General solution sol(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    SuperscriptBox["x", "2"], "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"-", 
+       FractionBox[
+        SuperscriptBox["x", "2"], "2"]}]], " ", 
+     RowBox[{"C", "[", "2", "]"}]}], "+", 
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"-", 
+       FractionBox[
+        SuperscriptBox["x", "2"], "2"]}]], " ", 
+     SqrtBox[
+      FractionBox["\[Pi]", "2"]], " ", 
+     RowBox[{"C", "[", "1", "]"}], " ", 
+     RowBox[{"Erfi", "[", 
+      FractionBox["x", 
+       SqrtBox["2"]], "]"}]}]}]}],
+  SequenceForm[
+  "General solution sol(x): ", $CellContext`x^2 + 
+   E^(Rational[-1, 2] $CellContext`x^2) C[2] + 
+   E^(Rational[-1, 2] $CellContext`x^2) (Rational[1, 2] Pi)^Rational[1, 2] 
+    C[1] Erfi[2^Rational[-1, 2] $CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957212329614*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Problem 2: ", "Section"],
+ Cell[BoxData[
+  StyleBox[
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["y", "\[Prime]\[Prime]"], "+", 
+     RowBox[{"4", "y"}]}], "\[Equal]", 
+    RowBox[{"sin", 
+     RowBox[{"(", "x"}]}]}], "Section"]]],
+ StyleBox[")", "Section"]
+}], "Text",
+ CellChangeTimes->{{3.974957539767048*^9, 3.974957672912275*^9}, {
+  3.974957704865605*^9, 3.9749577392908173`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Clear", " ", "previous", " ", "variables"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Clear", "[", 
+    RowBox[{
+    "x", ",", "y", ",", "y1", ",", "y2", ",", "v1", ",", "v2", ",", "w", ",", 
+     "f", ",", "yh", ",", "yc", ",", "yp", ",", "sol"}], "]"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Define", " ", "the", " ", "equations"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"eq1", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+       RowBox[{"4", "*", 
+        RowBox[{"y", "[", "x", "]"}]}]}], "\[Equal]", 
+      RowBox[{"Sin", "[", "x", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", "Nonhomogeneous", "*)"}], 
+   RowBox[{
+    RowBox[{"eq0", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"y", "''"}], "[", "x", "]"}], "+", 
+       RowBox[{"4", "*", 
+        RowBox[{"y", "[", "x", "]"}]}]}], "\[Equal]", "0"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", "Homogeneous", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"f", "[", "x_", "]"}], "=", 
+     RowBox[{"Sin", "[", "x", "]"}]}], ";", 
+    RowBox[{"(*", 
+     RowBox[{"RHS", " ", "function"}], "*)"}], "\n", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Nonhomogeneous eq: \>\"", ",", "eq1"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Homogeneous eq: \>\"", ",", "eq0"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<RHS function f(x): \>\"", ",", 
+      RowBox[{"f", "[", "x", "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Solve", " ", "homogeneous", " ", "equation"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"yh", "=", 
+     RowBox[{
+      RowBox[{"DSolve", "[", 
+       RowBox[{"eq0", ",", 
+        RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Homogeneous solution yh: \>\"", ",", "yh"}], "]"}], ";"}], 
+   "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Define", " ", "two", " ", "independent", " ", "solutions"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y1", "[", "x_", "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"y", "[", "x", "]"}], "/.", "yh"}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"C", "[", "1", "]"}], "\[Rule]", "1"}], ",", 
+        RowBox[{
+         RowBox[{"C", "[", "2", "]"}], "\[Rule]", "0"}]}], "}"}]}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"y2", "[", "x_", "]"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"y", "[", "x", "]"}], "/.", "yh"}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"C", "[", "1", "]"}], "\[Rule]", "0"}], ",", 
+        RowBox[{
+         RowBox[{"C", "[", "2", "]"}], "\[Rule]", "1"}]}], "}"}]}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Independent solution y1(x): \>\"", ",", 
+      RowBox[{"y1", "[", "x", "]"}]}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Independent solution y2(x): \>\"", ",", 
+      RowBox[{"y2", "[", "x", "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", "Wronskian", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"w", "=", 
+     RowBox[{"Det", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"y1", "[", "x", "]"}], ",", 
+          RowBox[{"y2", "[", "x", "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"y1", "'"}], "[", "x", "]"}], ",", 
+          RowBox[{
+           RowBox[{"y2", "'"}], "[", "x", "]"}]}], "}"}]}], "}"}], "]"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Wronskian w(x): \>\"", ",", "w"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Variation", " ", "of", " ", 
+     RowBox[{"parameters", ":", 
+      RowBox[{"compute", " ", "v1", " ", "and", " ", "v2"}]}]}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"v1", "=", 
+     RowBox[{"-", 
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y2", "[", "x", "]"}], "*", 
+         RowBox[{
+          RowBox[{"f", "[", "x", "]"}], "/", "w"}]}], ",", "x"}], "]"}]}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"v2", "=", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"y1", "[", "x", "]"}], "*", 
+        RowBox[{
+         RowBox[{"f", "[", "x", "]"}], "/", "w"}]}], ",", "x"}], "]"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<v1(x) = \>\"", ",", "v1"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<v2(x) = \>\"", ",", "v2"}], "]"}], ";"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Particular", " ", "solution"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"yp", "=", 
+     RowBox[{
+      RowBox[{"v1", "*", 
+       RowBox[{"y1", "[", "x", "]"}]}], "+", 
+      RowBox[{"v2", "*", 
+       RowBox[{"y2", "[", "x", "]"}]}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Particular solution yp(x): \>\"", ",", "yp"}], "]"}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Complementary", " ", 
+     RowBox[{"(", "homogeneous", ")"}], " ", "solution"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"yc", "=", 
+     RowBox[{
+      RowBox[{"y", "[", "x", "]"}], "/.", "yh"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Complementary solution yc(x): \>\"", ",", "yc"}], "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"General", " ", "solution"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"sol", "[", "x_", "]"}], "=", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"yc", "+", "yp"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<General solution sol(x): \>\"", ",", 
+      RowBox[{"sol", "[", "x", "]"}]}], "]"}], ";"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.974957239580282*^9, {3.974957533525832*^9, 3.974957536085741*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Nonhomogeneous eq: \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"4", " ", 
+      RowBox[{"y", "[", "x", "]"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["y", "\[Prime]\[Prime]",
+       MultilineFunction->None], "[", "x", "]"}]}], "\[Equal]", 
+    RowBox[{"Sin", "[", "x", "]"}]}]}],
+  SequenceForm[
+  "Nonhomogeneous eq: ", 
+   4 $CellContext`y[$CellContext`x] + 
+    Derivative[2][$CellContext`y][$CellContext`x] == Sin[$CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957242726398*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Homogeneous eq: \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"4", " ", 
+      RowBox[{"y", "[", "x", "]"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["y", "\[Prime]\[Prime]",
+       MultilineFunction->None], "[", "x", "]"}]}], "\[Equal]", "0"}]}],
+  SequenceForm[
+  "Homogeneous eq: ", 
+   4 $CellContext`y[$CellContext`x] + 
+    Derivative[2][$CellContext`y][$CellContext`x] == 0],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572427283974`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"RHS function f(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{"Sin", "[", "x", "]"}]}],
+  SequenceForm["RHS function f(x): ", 
+   Sin[$CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572427323985`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Homogeneous solution yh: \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"y", "[", "x", "]"}], "\[Rule]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"C", "[", "1", "]"}], " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{"2", " ", "x"}], "]"}]}], "+", 
+      RowBox[{
+       RowBox[{"C", "[", "2", "]"}], " ", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"2", " ", "x"}], "]"}]}]}]}], "}"}]}],
+  SequenceForm[
+  "Homogeneous solution yh: ", {$CellContext`y[$CellContext`x] -> 
+    C[1] Cos[2 $CellContext`x] + C[2] Sin[2 $CellContext`x]}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572427353992`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Independent solution y1(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{"Cos", "[", 
+    RowBox[{"2", " ", "x"}], "]"}]}],
+  SequenceForm["Independent solution y1(x): ", 
+   Cos[2 $CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957242737399*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Independent solution y2(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{"Sin", "[", 
+    RowBox[{"2", " ", "x"}], "]"}]}],
+  SequenceForm["Independent solution y2(x): ", 
+   Sin[2 $CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572427404013`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Wronskian w(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"2", " ", 
+     SuperscriptBox[
+      RowBox[{"Cos", "[", 
+       RowBox[{"2", " ", "x"}], "]"}], "2"]}], "+", 
+    RowBox[{"2", " ", 
+     SuperscriptBox[
+      RowBox[{"Sin", "[", 
+       RowBox[{"2", " ", "x"}], "]"}], "2"]}]}]}],
+  SequenceForm[
+  "Wronskian w(x): ", 2 Cos[2 $CellContext`x]^2 + 2 Sin[2 $CellContext`x]^2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.974957242742401*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"v1(x) = \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", "3"]}], " ", 
+    SuperscriptBox[
+     RowBox[{"Sin", "[", "x", "]"}], "3"]}]}],
+  SequenceForm["v1(x) = ", Rational[-1, 3] Sin[$CellContext`x]^3],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.97495724281843*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"v2(x) = \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      FractionBox[
+       RowBox[{"Cos", "[", "x", "]"}], "2"], "-", 
+      RowBox[{
+       FractionBox["1", "6"], " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{"3", " ", "x"}], "]"}]}]}], ")"}]}]}],
+  SequenceForm[
+  "v2(x) = ", 
+   Rational[1, 2] (Rational[1, 2] Cos[$CellContext`x] + 
+    Rational[-1, 6] Cos[3 $CellContext`x])],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.97495724282143*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Particular solution yp(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "3"]}], " ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"2", " ", "x"}], "]"}], " ", 
+     SuperscriptBox[
+      RowBox[{"Sin", "[", "x", "]"}], "3"]}], "+", 
+    RowBox[{
+     FractionBox["1", "2"], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"Cos", "[", "x", "]"}], "2"], "-", 
+       RowBox[{
+        FractionBox["1", "6"], " ", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"3", " ", "x"}], "]"}]}]}], ")"}], " ", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"2", " ", "x"}], "]"}]}]}]}],
+  SequenceForm[
+  "Particular solution yp(x): ", 
+   Rational[-1, 3] Cos[2 $CellContext`x] Sin[$CellContext`x]^3 + 
+   Rational[1, 2] (Rational[1, 2] Cos[$CellContext`x] + 
+     Rational[-1, 6] Cos[3 $CellContext`x]) Sin[2 $CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572428244305`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Complementary solution yc(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"C", "[", "1", "]"}], " ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"2", " ", "x"}], "]"}]}], "+", 
+    RowBox[{
+     RowBox[{"C", "[", "2", "]"}], " ", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"2", " ", "x"}], "]"}]}]}]}],
+  SequenceForm[
+  "Complementary solution yc(x): ", C[1] Cos[2 $CellContext`x] + 
+   C[2] Sin[2 $CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572428264313`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"General solution sol(x): \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"C", "[", "1", "]"}], " ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"2", " ", "x"}], "]"}]}], "+", 
+    FractionBox[
+     RowBox[{"Sin", "[", "x", "]"}], "3"], "+", 
+    RowBox[{
+     RowBox[{"C", "[", "2", "]"}], " ", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"2", " ", "x"}], "]"}]}]}]}],
+  SequenceForm[
+  "General solution sol(x): ", C[1] Cos[2 $CellContext`x] + 
+   Rational[1, 3] Sin[$CellContext`x] + C[2] Sin[2 $CellContext`x]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9749572428294325`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1350, 631},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 550, 16, 48, "Text"],
+Cell[CellGroupData[{
+Cell[1132, 40, 6447, 195, 692, "Input"],
+Cell[CellGroupData[{
+Cell[7604, 239, 805, 21, 23, "Print"],
+Cell[8412, 262, 699, 18, 23, "Print"],
+Cell[9114, 282, 315, 8, 23, "Print"],
+Cell[9432, 292, 1079, 30, 48, "Print"],
+Cell[10514, 324, 618, 18, 48, "Print"],
+Cell[11135, 344, 385, 10, 35, "Print"],
+Cell[11523, 356, 382, 10, 35, "Print"],
+Cell[11908, 368, 305, 8, 23, "Print"],
+Cell[12216, 378, 999, 31, 50, "Print"],
+Cell[13218, 411, 1788, 53, 50, "Print"],
+Cell[15009, 466, 922, 26, 48, "Print"],
+Cell[15934, 494, 971, 28, 48, "Print"]
+}, Open  ]]
+}, Open  ]],
+Cell[16932, 526, 414, 13, 46, "Text"],
+Cell[CellGroupData[{
+Cell[17371, 543, 6254, 185, 712, "Input"],
+Cell[CellGroupData[{
+Cell[23650, 732, 582, 16, 23, "Print"],
+Cell[24235, 750, 528, 15, 23, "Print"],
+Cell[24766, 767, 271, 7, 23, "Print"],
+Cell[25040, 776, 688, 19, 23, "Print"],
+Cell[25731, 797, 314, 8, 23, "Print"],
+Cell[26048, 807, 316, 8, 23, "Print"],
+Cell[26367, 817, 517, 15, 23, "Print"],
+Cell[26887, 834, 356, 10, 40, "Print"],
+Cell[27246, 846, 570, 18, 40, "Print"],
+Cell[27819, 866, 1006, 29, 40, "Print"],
+Cell[28828, 897, 557, 16, 23, "Print"],
+Cell[29388, 915, 650, 18, 40, "Print"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
