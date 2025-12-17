@@ -1,0 +1,152 @@
+Notebook[{Cell[
+CellGroupData[{Cell[
+BoxData[{StyleBox[RowBox[{RowBox[{"(*",RowBox[
+{"Clear"," ","previous"," ","variables"}],"*)"}],"\n",RowBox[{"Clear","[",RowBox[
+{"x",","," ","y",","," ","y1",","," ","y2",","," ","v1",","," ","v2",","," ","w",","," ","f",","," ","yh",","," ","yc",","," ","yp",","," ","sol"}],"]"}]}]],"\n",StyleBox[
+RowBox[{RowBox[{"(*",RowBox[{"Define"," ","the"," ","equations"}],"*)"}],"\n",RowBox[
+{RowBox[{"eq1"," ","="," ",RowBox[{RowBox[{RowBox[{RowBox[{"y","''"}],"[","x","]"}]," ","+"," ",RowBox[
+{"x","*",RowBox[{RowBox[{"y","'"}],"[","x","]"}]}]," ","+"," ",RowBox[{"y","[","x","]"}]}]," ","=="," ",RowBox[
+{RowBox[{"3","*",RowBox[{"x","^","2"}]}]," ","+"," ","2"}]}]}],";"}]}]],"\n",StyleBox[
+RowBox[{RowBox[{"(*","Nonhomogeneous","*)"}],RowBox[{RowBox[{"eq0"," ","="," ",RowBox[
+{RowBox[{RowBox[{RowBox[{"y","''"}],"[","x","]"}]," ","+"," ",RowBox[{"x","*",RowBox[
+{RowBox[{"y","'"}],"[","x","]"}]}]," ","+"," ",RowBox[{"y","[","x","]"}]}]," ","=="," ","0"}]}],";"}]}]],"\n",StyleBox[
+RowBox[{RowBox[{"(*","Homogeneous","*)"}],RowBox[{RowBox[{RowBox[{"f","[","x_","]"}]," ","="," ",RowBox[
+{RowBox[{"3","*",RowBox[{"x","^","2"}]}]," ","+"," ","2"}]}],";"}],RowBox[{"(*",RowBox[
+{"RHS"," ","function"}],"*)"}]}]],"\n",RowBox[{RowBox[{"Print","[",RowBox[{"\"Nonhomogeneous eq: \"",","," ","eq1"}],"]"}],";"}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Homogeneous eq: \"",","," ","eq0"}],"]"}],";"}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"RHS function f(x): \"",","," ",RowBox[{"f","[","x","]"}]}],"]"}],";"}],"\n",StyleBox[
+RowBox[{RowBox[{"(*",RowBox[{"Solve"," ","homogeneous"," ","equation"}],"*)"}],"\n",RowBox[
+{RowBox[{"yh"," ","="," ",RowBox[{RowBox[{"DSolve","[",RowBox[{"eq0",","," ",RowBox[
+{"y","[","x","]"}],","," ","x"}],"]"}],"[",RowBox[{"[","1","]"}],"]"}]}],";"}]}]],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Homogeneous solution yh: \"",","," ","yh"}],"]"}],";"}],"\n",StyleBox[
+RowBox[{RowBox[{"(*",RowBox[{"Define"," ","two"," ","independent"," ","solutions"}],"*)"}],"\n",RowBox[
+{RowBox[{RowBox[{"y1","[","x_","]"}]," ","="," ",RowBox[{RowBox[{RowBox[{"y","[","x","]"}]," ","/."," ","yh"}]," ","/."," ",RowBox[
+{"{",RowBox[{RowBox[{RowBox[{"C","[","1","]"}]," ","\[Rule]"," ","1"}],","," ",RowBox[
+{RowBox[{"C","[","2","]"}]," ","\[Rule]"," ","0"}]}],"}"}]}]}],";"}]}]],"\n",RowBox[
+{RowBox[{RowBox[{"y2","[","x_","]"}]," ","="," ",RowBox[{RowBox[{RowBox[{"y","[","x","]"}]," ","/."," ","yh"}]," ","/."," ",RowBox[
+{"{",RowBox[{RowBox[{RowBox[{"C","[","1","]"}]," ","\[Rule]"," ","0"}],","," ",RowBox[
+{RowBox[{"C","[","2","]"}]," ","\[Rule]"," ","1"}]}],"}"}]}]}],";"}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Independent solution y1(x): \"",","," ",RowBox[{"y1","[","x","]"}]}],"]"}],";"}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Independent solution y2(x): \"",","," ",RowBox[{"y2","[","x","]"}]}],"]"}],";"}],"\n",StyleBox[
+RowBox[{RowBox[{"(*","Wronskian","*)"}],"\n",RowBox[{RowBox[{"w"," ","="," ",RowBox[
+{"Det","[",RowBox[{"{",RowBox[{RowBox[{"{",RowBox[{RowBox[{"y1","[","x","]"}],","," ",RowBox[
+{"y2","[","x","]"}]}],"}"}],","," ",RowBox[{"{",RowBox[{RowBox[{RowBox[{"y1","'"}],"[","x","]"}],","," ",RowBox[
+{RowBox[{"y2","'"}],"[","x","]"}]}],"}"}]}],"}"}],"]"}]}],";"}]}]],"\n",RowBox[{RowBox[
+{"Print","[",RowBox[{"\"Wronskian w(x): \"",","," ","w"}],"]"}],";"}],"\n",StyleBox[
+RowBox[{RowBox[{"(*",RowBox[{"Variation"," ","of"," ",RowBox[{"parameters",":",RowBox[
+{"compute"," ","v1"," ","and"," ","v2"}]}]}],"*)"}],"\n",RowBox[{RowBox[{"v1"," ","="," ",RowBox[
+{"-",RowBox[{"Integrate","[",RowBox[{RowBox[{RowBox[{"y2","[","x","]"}],"*",RowBox[
+{RowBox[{"f","[","x","]"}],"/","w"}]}],","," ","x"}],"]"}]}]}],";"}]}]],"\n",RowBox[
+{RowBox[{"v2"," ","="," ",RowBox[{"Integrate","[",RowBox[{RowBox[{RowBox[{"y1","[","x","]"}],"*",RowBox[
+{RowBox[{"f","[","x","]"}],"/","w"}]}],","," ","x"}],"]"}]}],";"}],"\n",RowBox[{RowBox[
+{"Print","[",RowBox[{"\"v1(x) = \"",","," ","v1"}],"]"}],";"}],"\n",RowBox[{RowBox[
+{"Print","[",RowBox[{"\"v2(x) = \"",","," ","v2"}],"]"}],";"}],"\n",StyleBox[RowBox[
+{RowBox[{"(*",RowBox[{"Particular"," ","solution"}],"*)"}],"\n",RowBox[{RowBox[{"yp"," ","="," ",RowBox[
+{RowBox[{"v1","*",RowBox[{"y1","[","x","]"}]}]," ","+"," ",RowBox[{"v2","*",RowBox[
+{"y2","[","x","]"}]}]}]}],";"}]}]],"\n",RowBox[{RowBox[{"Print","[",RowBox[{"\"Particular solution yp(x): \"",","," ","yp"}],"]"}],";"}],"\n",StyleBox[
+RowBox[{RowBox[{"(*",RowBox[{"Complementary"," ",RowBox[{"(","homogeneous",")"}]," ","solution"}],"*)"}],"\n",RowBox[
+{RowBox[{"yc"," ","="," ",RowBox[{RowBox[{"y","[","x","]"}]," ","/."," ","yh"}]}],";"}]}]],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Complementary solution yc(x): \"",","," ","yc"}],"]"}],";"}],"\n",StyleBox[
+RowBox[{RowBox[{"(*",RowBox[{"General"," ","solution"}],"*)"}],"\n",RowBox[{RowBox[
+{RowBox[{"sol","[","x_","]"}]," ","="," ",RowBox[{"Simplify","[",RowBox[{"yc"," ","+"," ","yp"}],"]"}]}],";"}]}]],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"General solution sol(x): \"",","," ",RowBox[{"sol","[","x","]"}]}],"]"}],";"}]}],
+"Input",CellLabel -> "In[1]:= ",ExpressionUUID -> "83610a89-ce7e-4762-88be-88066b3dbb38"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"Nonhomogeneous eq: \"","\[InvisibleSpace]",RowBox[{RowBox[
+{RowBox[{"y","[","x","]"}],"+",RowBox[{"x"," ",RowBox[{SuperscriptBox["y","\[Prime]",
+MultilineFunction -> None],"[","x","]"}]}],"+",RowBox[{SuperscriptBox["y","\[Prime]\[Prime]",
+MultilineFunction -> None],"[","x","]"}]}],"\[Equal]",RowBox[{"2","+",RowBox[{"3"," ",SuperscriptBox[
+"x","2"]}]}]}]}],SequenceForm["Nonhomogeneous eq: ",Equal[Plus[y[x],Times[x,Derivative[
+1][y][x]],Derivative[2][y][x]],Plus[2,Times[3,Power[x,2]]]]],Editable -> False],StandardForm],
+"Print",ExpressionUUID -> "514bbbc8-2496-40ee-ab28-2b55a20dab14"],Cell[
+BoxData[InterpretationBox[
+RowBox[{"\"Homogeneous eq: \"","\[InvisibleSpace]",RowBox[{RowBox[{RowBox[{"y","[","x","]"}],"+",RowBox[
+{"x"," ",RowBox[{SuperscriptBox["y","\[Prime]",MultilineFunction -> None],"[","x","]"}]}],"+",RowBox[
+{SuperscriptBox["y","\[Prime]\[Prime]",MultilineFunction -> None],"[","x","]"}]}],"\[Equal]","0"}]}],
+SequenceForm["Homogeneous eq: ",Equal[Plus[y[x],Times[x,Derivative[1][y][x]],Derivative[
+2][y][x]],0]],Editable -> False],StandardForm],"Print",ExpressionUUID -> "eb70c42f-966f-4665-afea-403ec871efb4"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"RHS function f(x): \"","\[InvisibleSpace]",RowBox[{"2","+",RowBox[
+{"3"," ",SuperscriptBox["x","2"]}]}]}],SequenceForm["RHS function f(x): ",Plus[2,
+Times[3,Power[x,2]]]],Editable -> False],StandardForm],"Print",ExpressionUUID -> "7957e2f6-1804-44ab-9090-8bc13e9e8d11"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"Homogeneous solution yh: \"","\[InvisibleSpace]",RowBox[
+{"{",RowBox[{RowBox[{"y","[","x","]"}],"\[Rule]",RowBox[{RowBox[{SuperscriptBox["\[ExponentialE]",
+RowBox[{"-",FractionBox[SuperscriptBox["x","2"],"2"]}]]," ",TemplateBox[{"2"},"C"]}],"+",RowBox[
+{SuperscriptBox["\[ExponentialE]",RowBox[{"-",FractionBox[SuperscriptBox["x","2"],
+"2"]}]]," ",SqrtBox[FractionBox["\[Pi]","2"]]," ",TemplateBox[{"1"},"C"]," ",RowBox[
+{"Erfi","[",FractionBox["x",SqrtBox["2"]],"]"}]}]}]}],"}"}]}],SequenceForm["Homogeneous solution yh: ",
+{y[x] -> Plus[Times[Power[E,Times[Rational[-1,2],Power[x,2]]],C[2]],Times[Power[E,
+Times[Rational[-1,2],Power[x,2]]],Power[Times[Rational[1,2],Pi],Rational[1,2]],C[
+1],Erfi[Times[Power[2,Rational[-1,2]],x]]]]}],Editable -> False],StandardForm],"Print",
+ExpressionUUID -> "ad555245-02c1-4e86-97a1-f1bc78273d4c"],Cell[
+BoxData[InterpretationBox[
+RowBox[{"\"Independent solution y1(x): \"","\[InvisibleSpace]",RowBox[{SuperscriptBox[
+"\[ExponentialE]",RowBox[{"-",FractionBox[SuperscriptBox["x","2"],"2"]}]]," ",SqrtBox[
+FractionBox["\[Pi]","2"]]," ",RowBox[{"Erfi","[",FractionBox["x",SqrtBox["2"]],"]"}]}]}],
+SequenceForm["Independent solution y1(x): ",Times[Power[E,Times[Rational[-1,2],Power[
+x,2]]],Power[Times[Rational[1,2],Pi],Rational[1,2]],Erfi[Times[Power[2,Rational[-1,
+2]],x]]]],Editable -> False],StandardForm],"Print",ExpressionUUID -> "2f7aa81a-b13c-4de9-afc4-3c4468401261"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"Independent solution y2(x): \"","\[InvisibleSpace]",SuperscriptBox[
+"\[ExponentialE]",RowBox[{"-",FractionBox[SuperscriptBox["x","2"],"2"]}]]}],SequenceForm[
+"Independent solution y2(x): ",Power[E,Times[Rational[-1,2],Power[x,2]]]],Editable -> False],
+StandardForm],"Print",ExpressionUUID -> "00273c8b-77a7-48de-a012-9df1d29c2654"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"Wronskian w(x): \"","\[InvisibleSpace]",RowBox[{"-",SuperscriptBox[
+"\[ExponentialE]",RowBox[{"-",FractionBox[SuperscriptBox["x","2"],"2"]}]]}]}],SequenceForm[
+"Wronskian w(x): ",Times[-1,Power[E,Times[Rational[-1,2],Power[x,2]]]]],Editable -> False],
+StandardForm],"Print",ExpressionUUID -> "d2b339ff-81a3-4e0a-99bc-4c6af9ca6c26"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"v1(x) = \"","\[InvisibleSpace]",RowBox[{RowBox[{"2"," ","x"}],"+",SuperscriptBox[
+"x","3"]}]}],SequenceForm["v1(x) = ",Plus[Times[2,x],Power[x,3]]],Editable -> False],
+StandardForm],"Print",ExpressionUUID -> "4ac7126a-fbf0-4a51-94c3-ed04a63c7724"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"v2(x) = \"","\[InvisibleSpace]",RowBox[{RowBox[{"-",SqrtBox[
+FractionBox["\[Pi]","2"]]}]," ",RowBox[{"(",RowBox[{RowBox[{RowBox[{"-",SuperscriptBox[
+"\[ExponentialE]",FractionBox[SuperscriptBox["x","2"],"2"]]}]," ",SqrtBox[FractionBox[
+"2","\[Pi]"]]," ",SuperscriptBox["x","2"]}],"+",RowBox[{"x"," ",RowBox[{"(",RowBox[
+{"2","+",SuperscriptBox["x","2"]}],")"}]," ",RowBox[{"Erfi","[",FractionBox["x",SqrtBox[
+"2"]],"]"}]}]}],")"}]}]}],SequenceForm["v2(x) = ",Times[-1,Power[Times[Rational[1,
+2],Pi],Rational[1,2]],Plus[Times[-1,Power[E,Times[Rational[1,2],Power[x,2]]],Power[
+Times[2,Power[Pi,-1]],Rational[1,2]],Power[x,2]],Times[x,Plus[2,Power[x,2]],Erfi[
+Times[Power[2,Rational[-1,2]],x]]]]]],Editable -> False],StandardForm],"Print",ExpressionUUID -> "157b418a-706e-4b92-b36a-013cc0ce224d"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"Particular solution yp(x): \"","\[InvisibleSpace]",RowBox[
+{RowBox[{SuperscriptBox["\[ExponentialE]",RowBox[{"-",FractionBox[SuperscriptBox[
+"x","2"],"2"]}]]," ",SqrtBox[FractionBox["\[Pi]","2"]]," ",RowBox[{"(",RowBox[{RowBox[
+{"2"," ","x"}],"+",SuperscriptBox["x","3"]}],")"}]," ",RowBox[{"Erfi","[",FractionBox[
+"x",SqrtBox["2"]],"]"}]}],"-",RowBox[{SuperscriptBox["\[ExponentialE]",RowBox[{"-",FractionBox[
+SuperscriptBox["x","2"],"2"]}]]," ",SqrtBox[FractionBox["\[Pi]","2"]]," ",RowBox[
+{"(",RowBox[{RowBox[{RowBox[{"-",SuperscriptBox["\[ExponentialE]",FractionBox[SuperscriptBox[
+"x","2"],"2"]]}]," ",SqrtBox[FractionBox["2","\[Pi]"]]," ",SuperscriptBox["x","2"]}],"+",RowBox[
+{"x"," ",RowBox[{"(",RowBox[{"2","+",SuperscriptBox["x","2"]}],")"}]," ",RowBox[{"Erfi","[",FractionBox[
+"x",SqrtBox["2"]],"]"}]}]}],")"}]}]}]}],SequenceForm["Particular solution yp(x): ",
+Plus[Times[Power[E,Times[Rational[-1,2],Power[x,2]]],Power[Times[Rational[1,2],Pi],
+Rational[1,2]],Plus[Times[2,x],Power[x,3]],Erfi[Times[Power[2,Rational[-1,2]],x]]],
+Times[-1,Power[E,Times[Rational[-1,2],Power[x,2]]],Power[Times[Rational[1,2],Pi],
+Rational[1,2]],Plus[Times[-1,Power[E,Times[Rational[1,2],Power[x,2]]],Power[Times[
+2,Power[Pi,-1]],Rational[1,2]],Power[x,2]],Times[x,Plus[2,Power[x,2]],Erfi[Times[
+Power[2,Rational[-1,2]],x]]]]]]],Editable -> False],StandardForm],"Print",ExpressionUUID -> "7fdf2143-8a86-45a2-944c-832f5c42b8a8"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"Complementary solution yc(x): \"","\[InvisibleSpace]",RowBox[
+{RowBox[{SuperscriptBox["\[ExponentialE]",RowBox[{"-",FractionBox[SuperscriptBox[
+"x","2"],"2"]}]]," ",TemplateBox[{"2"},"C"]}],"+",RowBox[{SuperscriptBox["\[ExponentialE]",
+RowBox[{"-",FractionBox[SuperscriptBox["x","2"],"2"]}]]," ",SqrtBox[FractionBox["\[Pi]",
+"2"]]," ",TemplateBox[{"1"},"C"]," ",RowBox[{"Erfi","[",FractionBox["x",SqrtBox["2"]],"]"}]}]}]}],
+SequenceForm["Complementary solution yc(x): ",Plus[Times[Power[E,Times[Rational[-1,
+2],Power[x,2]]],C[2]],Times[Power[E,Times[Rational[-1,2],Power[x,2]]],Power[Times[
+Rational[1,2],Pi],Rational[1,2]],C[1],Erfi[Times[Power[2,Rational[-1,2]],x]]]]],Editable -> False],
+StandardForm],"Print",ExpressionUUID -> "b8bf549d-6d39-4793-aff0-6ae34662ea0b"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"General solution sol(x): \"","\[InvisibleSpace]",RowBox[
+{SuperscriptBox["x","2"],"+",RowBox[{SuperscriptBox["\[ExponentialE]",RowBox[{"-",FractionBox[
+SuperscriptBox["x","2"],"2"]}]]," ",TemplateBox[{"2"},"C"]}],"+",RowBox[{SuperscriptBox[
+"\[ExponentialE]",RowBox[{"-",FractionBox[SuperscriptBox["x","2"],"2"]}]]," ",SqrtBox[
+FractionBox["\[Pi]","2"]]," ",TemplateBox[{"1"},"C"]," ",RowBox[{"Erfi","[",FractionBox[
+"x",SqrtBox["2"]],"]"}]}]}]}],SequenceForm["General solution sol(x): ",Plus[Power[
+x,2],Times[Power[E,Times[Rational[-1,2],Power[x,2]]],C[2]],Times[Power[E,Times[Rational[
+-1,2],Power[x,2]]],Power[Times[Rational[1,2],Pi],Rational[1,2]],C[1],Erfi[Times[Power[
+2,Rational[-1,2]],x]]]]],Editable -> False],StandardForm],"Print",ExpressionUUID -> "c7abbcd0-15a9-4697-a74a-31f77f055924"]},
+Open],ExpressionUUID -> "3e557de7-fe2b-4244-a74a-0bb5383eb955"]},StyleDefinitions -> "Default.nb",
+FrontEndVersion -> "14.3 for Wolfram Cloud 1.75 (December 9, 2025)"]
